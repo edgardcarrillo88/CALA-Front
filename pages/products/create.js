@@ -21,7 +21,8 @@ function Create() {
     //vamos a hacer la petición a nuesto backend
     const enviodeformulario = (e)=>{
         e.preventDefault()//esto es para evitar que cada vez que se envie el formulario, la pagina no se refresque
-        fetch('http://localhost:5000/api/v1/products',{
+        //http://localhost:5000/api/v1
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`,{//process.env es para acceder a variables de entorno (variables que se configuran por ejemplo en vercel o azure, despues de ese cpdigo se coloca "." y el nombre de la variable de entorno), EL NOMBRE DE ESTA VARIBLE se debe crear  en un nuevo archivo llamado ".env.local", asi lo dice la documentación de Next
           method:'POST',
           headers:{
             'Content-type':'application/json'
@@ -61,3 +62,5 @@ function Create() {
 
 //sigo sin saber para que mierda sirve esto, pero es importante señalar que el nombre de la función se debe escribir con mayuscula
 export default Create
+
+// la lora
