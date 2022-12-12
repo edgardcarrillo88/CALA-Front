@@ -22,25 +22,73 @@ function Createitem(){
         })
     }
 
+
+
+
+
+
+    
+
+    console.log(product);
+
+  
+
+
     const enviodeformulario = async (e)=>{
         e.preventDefault()
 
-        try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`,{
-            method:'POST',
-            headers:{
-              'Content-type':'application/json'
-            },
-            body:JSON.stringify(product)
-          })
-          const data = await res.json()
-              console.log({data});
-              console.log(data.image);
-          setproduct(initialstate)
-          console.log("item agregado")
-        }catch (error) {
-            console.log({error});
+
+        //const myFile = document.querySelector("input[type=file]").files[0]
+        const myFile = document.getElementById('file').files[0]
+        const producto = new FormData()
+        producto.append('image',myFile)
+        producto.append('name',product.name)
+        producto.append('price',product.price)
+        producto.append('quantity',product.quantity)
+
+        console.log(producto)
+        console.log('aaaa')
+    
+        
+
+        // try {
+        // const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`,{
+        //     method:'POST',
+        //     headers:{
+        //       'Content-type':'application/json'
+        //     },
+        //     body:JSON.stringify(product)
+        //   })
+        //   const data = await res.json()
+        //   console.log(product)
+        //   setproduct(initialstate)
+        //   console.log("item agregado")
+        // }catch (error) {
+        //     console.log({error});
+        // }
+
+        try{
+            const res =await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`,{
+                method: 'POST',
+                body: producto
+            })
+            const data = await res.json()
+            console.log(data)
+            console.log(product)
+            console.log(producto)
+            setproduct(initialstate)
+            console.log("item agregado")
+        }catch(error){
+            console.log(producto)
+            console.log(JSON.stringify(producto))
+            console.log(producto.File) 
+            console.log(product)
+            console.log({error})
         }
+
+   
+
+
     }
 
       
@@ -65,7 +113,7 @@ function Createitem(){
                     </div>
                     <div>
                         <label>Adjuntar foto</label>
-                        <input type='file' name='image' value={product.image} onChange={controlcambios}></input>
+                        <input type='file' name='image' id='file' value={product.image} onChange={controlcambios}></input>
                     </div>
                     <button onClick={enviodeformulario}>crear el puto item</button>
                 </form>

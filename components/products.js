@@ -31,7 +31,7 @@ export default function showitems (){
                     <span>Producto: {name}</span>
                     <div>
                         
-                    <img src={`data: image/png; base64,${btoa(String.fromCharCode(...new Uint8Array(image?.data?.data)))}`} width="150" height="150"
+                    <img src={`data: image/png; base64,${btoa(String.fromCharCode(...new Uint8Array(image?.data?.data)))}`} width="200" height="200"
                     onClick={()=>
                                 {
                                 fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${_id}`,{method: "DELETE"})
