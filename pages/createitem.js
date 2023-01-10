@@ -20,6 +20,9 @@ function Createitem(){
             ...product,
             [inputname]: inputvalue
         })
+
+    console.log({product});
+        
     }
 
 
@@ -29,7 +32,7 @@ function Createitem(){
 
     
 
-    console.log(product);
+    console.log({product});
 
   
 
@@ -47,8 +50,7 @@ function Createitem(){
         producto.append('quantity',product.quantity)
 
         console.log(producto)
-        console.log('aaaa')
-    
+      
         
 
         // try {
@@ -73,6 +75,7 @@ function Createitem(){
                 body: producto
             })
             const data = await res.json()
+            console.log(NEXT_PUBLIC_BACKEND_URL)
             console.log(data)
             console.log(product)
             console.log(producto)
@@ -94,11 +97,12 @@ function Createitem(){
       
     return(
         <>
-        <Layout>
+        <Layout titlepage="Creación de items">
         </Layout>
-        <div className={style.layoutstyle}>
-            <h1>Ingreso de mercaderia</h1>
-                <form className={style.additem}>
+        <div className={style.additem}>
+            
+                <form>
+                    <h1>Ingreso de items</h1>
                     <div>
                         <label>Descipción</label>
                         <input type='text' name='name' value={product.name} onChange={controlcambios}></input>
@@ -115,13 +119,15 @@ function Createitem(){
                         <label>Adjuntar foto</label>
                         <input type='file' name='image' id='file' value={product.image} onChange={controlcambios}></input>
                     </div>
-                    <button onClick={enviodeformulario}>crear el puto item</button>
+                    <button onClick={enviodeformulario}>crear item</button>
                 </form>
         </div>
         <div>
             {/* <img src={pathimage} alt="image" width="150"/> */}
         </div>
+   
         </>
+
     )
 }
             

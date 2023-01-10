@@ -6,11 +6,11 @@ import { btoa } from 'buffer';
 function storageitems(){
     return(
         <>
-            <Layout>
+            <Layout titlepage="Listado de items">
             </Layout>
            
             <div>
-                <h1>Página de almacén</h1>
+                <h1>Listado de items</h1>
             </div>
             <div className={style.layoutstyle}>
                 <Showitems></Showitems>

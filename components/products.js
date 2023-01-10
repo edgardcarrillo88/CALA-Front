@@ -11,6 +11,7 @@ export default function showitems (){
     const [productlist, setproducts] = useState([])
     
     const actualizarlistadegaleria = ()=>{
+        console.log("Renderizando")
         fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`)
         .then((res) =>res.json())
         .then(({datos})=>{
@@ -23,7 +24,7 @@ export default function showitems (){
       }, [])
     
       return(
-        <>
+          <>
         <div className={style.items}>
             {productlist.map(({name, price, quantity, _id, image}) =>(
                 
@@ -31,14 +32,7 @@ export default function showitems (){
                     <span>Producto: {name}</span>
                     <div>
                         
-                    <img src={`data: image/png; base64,${btoa(String.fromCharCode(...new Uint8Array(image?.data?.data)))}`} width="200" height="200"
-                    onClick={()=>
-                                {
-                                fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${_id}`,{method: "DELETE"})
-                                .then(res => res.json())
-                                .then(data =>{console.log({data})})
-                                }
-                            }/>
+                    <img src={`data: image/png; base64,${btoa(String.fromCharCode(...new Uint8Array(image?.data?.data)))}`} width="150" height="150"/>
                     </div>
                     <div className={style.itemdetail}>
                         <span>Precio: {price}</span>
@@ -51,29 +45,17 @@ export default function showitems (){
                         <option>Tienda 3</option>
                     </select>
                     <button>reservar</button>
+                    <button onClick={()=>{
+                        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${_id}`,{method: "DELETE"})
+                        .then(res => res.json())
+                        .then(data =>{console.log({data})})
+                        .then(actualizarlistadegaleria)
+                        }
+                    }>Eliminar item</button>
                 </div>
                 ))
                 }
         </div>
-
-
-        {/* <div>
-            {productlist.map(({name, image, _id})=>{
-
-                console.log(image?.data?.data);
-                console.log(name);
-                console.log(_id);
-
-                const base64string = btoa(
-                    String.fromCharCode(...new Uint8Array(image?.data?.data))
-                )
-                return (<img src={`data: image/png; base64,${base64string}`}/>)
-            })}
-        </div> */}
-
-
-
-
 
         </>
     )

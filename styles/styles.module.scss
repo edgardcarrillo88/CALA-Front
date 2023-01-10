@@ -1,0 +1,36 @@
+
+.loginmain{
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+
+    h3{
+        font-size: 40px;
+    }
+
+    .formstyle{
+        border: 1px solid blue;
+        width: 100%;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;  
+    }
+
+    input{
+        border-radius: 10px;
+        margin-bottom: 10px;
+        width: 50%;
+    }
+    
+}
+
+
+
+
